@@ -1,0 +1,341 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Gherkin &#8212; sprint_1 0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to sprint_1’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="gherkin">
+<h1>Gherkin<a class="headerlink" href="#gherkin" title="Permalink to this headline">¶</a></h1>
+<p>(здесь и далее - перевод и легкая адаптация статьи [&#8220;Writing Features -
+Gherkin Language&#8221;][Writing Features])</p>
+<p><strong>Gherkin</strong> - человеко-читаемый язык для описания поведения системы,
+который использует отступы для задания структуры документа, (пробелы или
+символы табуляции). Каждая строчка начинается с одного из ключевых слов
+и описывает один из шагов.</p>
+<p>Пример:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Функция</span><span class="p">:</span> <span class="n">Короткое</span><span class="p">,</span> <span class="n">но</span> <span class="n">исчерпывающее</span> <span class="n">описание</span> <span class="n">требуемого</span> <span class="n">функционала</span>
+    <span class="n">Для</span> <span class="n">того</span><span class="p">,</span> <span class="n">чтобы</span> <span class="n">достичь</span> <span class="n">определенных</span> <span class="n">целей</span>
+    <span class="n">В</span> <span class="n">качестве</span> <span class="n">определенного</span> <span class="n">участника</span> <span class="n">взаимодействия</span> <span class="n">с</span> <span class="n">системой</span>
+    <span class="n">Я</span> <span class="n">хочу</span> <span class="n">получить</span> <span class="n">определенную</span> <span class="n">пользу</span>
+
+    <span class="n">Сценарий</span><span class="p">:</span> <span class="n">Какая</span><span class="o">-</span><span class="n">то</span> <span class="n">определенная</span> <span class="n">бизнес</span><span class="o">-</span><span class="n">ситуация</span>
+        <span class="n">Дано</span> <span class="n">какое</span><span class="o">-</span><span class="n">то</span> <span class="n">условие</span>
+        <span class="n">И</span> <span class="n">ещё</span> <span class="n">одно</span> <span class="n">условие</span>
+        <span class="n">Когда</span> <span class="n">предпринимается</span> <span class="n">какое</span><span class="o">-</span><span class="n">то</span> <span class="n">действие</span> <span class="n">участником</span>
+        <span class="n">И</span> <span class="n">им</span> <span class="n">делается</span> <span class="n">ещё</span> <span class="n">что</span><span class="o">-</span><span class="n">то</span>
+        <span class="n">И</span> <span class="n">вдобавок</span> <span class="n">он</span> <span class="n">совершил</span> <span class="n">что</span><span class="o">-</span><span class="n">то</span> <span class="n">ещё</span>
+        <span class="n">То</span> <span class="n">получается</span> <span class="n">какой</span><span class="o">-</span><span class="n">то</span> <span class="n">проверяемый</span> <span class="n">результат</span>
+        <span class="n">И</span> <span class="n">что</span><span class="o">-</span><span class="n">то</span> <span class="n">ещё</span> <span class="n">случается</span><span class="p">,</span> <span class="n">что</span> <span class="n">мы</span> <span class="n">можем</span> <span class="n">проверить</span>
+</pre></div>
+</div>
+<p>Обработчик разбивает файл с тестами на функции, сценарии и входящие в
+них шаги. Давайте разберем этот пример:</p>
+<ol class="arabic simple">
+<li>Строка <strong>Функция: Короткое, но исчерпывающее описание требуемого
+функционала</strong> начинает собой описание функционала и дает ему
+название.</li>
+<li>Следующие три строчки не обрабатываются и не несут никакой смысловой
+нагрузке для обработчика тестов, но они задают контекст тестирования
+и одновременно описывают, какую пользу мы получим от этого
+функционала.</li>
+<li>Строка <strong>Сценарий: Какая-то определенная бизнес-ситуация</strong> начинает
+сценарий и содержит его описание.</li>
+<li>Следующие 7 строчек описывают шаги теста, каждому из которых
+впоследствии будет сопоставлен определенный программный код,
+выполняющий описанное действие. Сопоставлению подлежат части строк
+лежащие после ключевых слов &#8220;Дано&#8221;, &#8220;И&#8221;, &#8220;Когда&#8221; и т.д.</li>
+</ol>
+<div class="section" id="feature">
+<h2>Функции (Feature)<a class="headerlink" href="#feature" title="Permalink to this headline">¶</a></h2>
+<p>Каждая функция описывается в отдельном файле с расширением <em>.feature</em>.
+Первая строчка должна начинаться с ключевого слова &#8220;Функция:&#8221;, за
+которой могут идти три строчки с описанием, размеченные отступами.
+Каждая функция обычно состоит из списка сценариев.</p>
+<p>Каждый сценарий состоит из списка <em>шагов</em>, каждый из которых должен
+начинаться с одного из ключевых слов:</p>
+<ul class="simple">
+<li>Дано</li>
+<li>Когда</li>
+<li>То</li>
+<li>Но</li>
+<li>И</li>
+</ul>
+<p>Шаги <em>&#8220;Но&#8221;</em> и <em>&#8220;И&#8221;</em> существуют исключительно для удобства чтения и по
+своим функциям повторяют ключевое слово, с которого начиналась
+предыдущая строчка.</p>
+<p>Вдобавок к сценариям, описание функционала может также содержать
+<em>структуры сценариев</em> и <em>предыстории</em>.</p>
+</div>
+<div class="section" id="scenario">
+<h2>Сценарий (Scenario)<a class="headerlink" href="#scenario" title="Permalink to this headline">¶</a></h2>
+<p>Сценарий представляет собой одну из ключевых структур в языке <em>Gherkin</em>.
+Каждый сценарий начинается с ключевого слова <strong>&#8220;Сценарий:&#8221;</strong>, и может
+содержать в себе название сценария. Описание функционала может содержать
+в себе один или больше сценариев, и каждый сценарий состоит из одного
+или более шага.</p>
+<p>Каждый из следующих сценариев содержит три шага:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Сценарий</span><span class="p">:</span> <span class="n">Вася</span> <span class="n">создает</span> <span class="n">новую</span> <span class="n">запись</span>
+    <span class="n">Дано</span> <span class="n">я</span> <span class="n">вошел</span> <span class="n">в</span> <span class="n">систему</span> <span class="n">как</span> <span class="n">Вася</span>
+    <span class="n">Когда</span> <span class="n">я</span> <span class="n">пытаюсь</span> <span class="n">добавить</span> <span class="n">запись</span> <span class="n">в</span> <span class="n">справочник</span> <span class="s2">&quot;Лекарства&quot;</span>
+    <span class="n">То</span> <span class="n">мне</span> <span class="n">должен</span> <span class="n">быть</span> <span class="n">ответ</span> <span class="s2">&quot;Ваша запись успешно добавлена.&quot;</span>
+
+<span class="n">Сценарий</span><span class="p">:</span> <span class="n">Вася</span> <span class="n">не</span> <span class="n">может</span> <span class="n">добавлять</span> <span class="n">запись</span> <span class="n">в</span> <span class="n">справочник</span> <span class="n">лечений</span>
+    <span class="n">Дано</span> <span class="n">я</span> <span class="n">вошел</span> <span class="n">в</span> <span class="n">систему</span> <span class="n">как</span> <span class="n">Вася</span>
+    <span class="n">Когда</span> <span class="n">я</span> <span class="n">пытаюсь</span> <span class="n">добавить</span> <span class="n">запись</span> <span class="n">в</span> <span class="n">справочник</span> <span class="s2">&quot;Виды лечений&quot;</span>
+    <span class="n">То</span> <span class="n">мне</span> <span class="n">должен</span> <span class="n">быть</span> <span class="n">ответ</span> <span class="s2">&quot;У вас нет прав доступа!&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="scenario-outline">
+<h2>Структура сценария (Scenario Outline)<a class="headerlink" href="#scenario-outline" title="Permalink to this headline">¶</a></h2>
+<p>Достаточно часто приходится писать множество мелких сценариев, которые
+различаются буквально парой переменных. Эти повторения могут быстро
+надоесть:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Сценарий</span><span class="p">:</span> <span class="n">удалить</span> <span class="mi">5</span> <span class="n">записей</span> <span class="n">из</span> <span class="mi">12</span>
+    <span class="n">Дано</span> <span class="n">есть</span> <span class="mi">12</span> <span class="n">записей</span>
+    <span class="n">Когда</span> <span class="n">я</span> <span class="n">удаляю</span> <span class="mi">5</span> <span class="n">записей</span>
+    <span class="n">То</span> <span class="n">у</span> <span class="n">меня</span> <span class="n">должно</span> <span class="n">остаться</span> <span class="mi">7</span> <span class="n">записей</span>
+
+<span class="n">Сценарий</span><span class="p">:</span> <span class="n">удалить</span> <span class="mi">5</span> <span class="n">записей</span> <span class="n">из</span> <span class="mi">20</span>
+    <span class="n">Дано</span> <span class="n">есть</span> <span class="mi">20</span> <span class="n">записей</span>
+    <span class="n">Когда</span> <span class="n">я</span> <span class="n">удаляю</span> <span class="mi">5</span> <span class="n">записей</span>
+    <span class="n">То</span> <span class="n">у</span> <span class="n">меня</span> <span class="n">должно</span> <span class="n">остаться</span> <span class="mi">15</span> <span class="n">записей</span>
+</pre></div>
+</div>
+<p>Структуры сценариев позволяют нам более кратко описывать подобные наборы
+сценариев с помощью шаблонов:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Структура</span> <span class="n">сценария</span><span class="p">:</span> <span class="n">удаление</span> <span class="n">записей</span>
+    <span class="n">Дано</span> <span class="n">есть</span> <span class="o">&lt;</span><span class="n">было</span><span class="o">&gt;</span> <span class="n">записей</span>
+    <span class="n">Когда</span> <span class="n">я</span> <span class="n">удаляю</span> <span class="o">&lt;</span><span class="n">удалено</span><span class="o">&gt;</span> <span class="n">записей</span>
+    <span class="n">То</span> <span class="n">у</span> <span class="n">меня</span> <span class="n">должно</span> <span class="n">остаться</span> <span class="o">&lt;</span><span class="n">остаток</span><span class="o">&gt;</span> <span class="n">записей</span>
+
+    <span class="n">Примеры</span><span class="p">:</span>
+        <span class="o">|</span> <span class="n">было</span>  <span class="o">|</span> <span class="n">удалено</span> <span class="o">|</span> <span class="n">остаток</span> <span class="o">|</span>
+        <span class="o">|</span> <span class="mi">12</span>    <span class="o">|</span>    <span class="mi">5</span>    <span class="o">|</span>   <span class="mi">7</span>     <span class="o">|</span>
+        <span class="o">|</span> <span class="mi">20</span>    <span class="o">|</span>    <span class="mi">5</span>    <span class="o">|</span>   <span class="mi">15</span>    <span class="o">|</span>
+</pre></div>
+</div>
+<p>Шаги указанные в структуре сценария не выполняются напрямую, но
+используются для подстановки в них значений из таблицы примеров. Каждая
+строчка таблицы будет обрабатываться как отдельный сценарий с указанными
+значениями вместо заглушек &#8220;было&#8221;, &#8220;удалено&#8221; и &#8220;стало&#8221;.</p>
+</div>
+<div class="section" id="background">
+<h2>Предыстории (Background)<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<p>Предыстории позволяют вам добавить определенный контекст ко всем
+сценариям в пределах функции. По сути, предыстория - сценарий без имени,
+состоящий из шагов. Основное отличие в запуске: предыстория запускается
+перед каждым сценарием:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Функция</span><span class="p">:</span> <span class="n">поддержка</span> <span class="n">многих</span> <span class="n">справочников</span>
+
+    <span class="n">Предыстория</span><span class="p">:</span>
+        <span class="n">Дано</span> <span class="n">есть</span> <span class="n">пользователь</span> <span class="n">с</span> <span class="n">именем</span> <span class="s2">&quot;Вася&quot;</span>
+        <span class="n">И</span> <span class="n">есть</span> <span class="n">справочник</span> <span class="s2">&quot;Лекарства&quot;</span>
+        <span class="n">И</span> <span class="n">у</span> <span class="n">пользователя</span> <span class="s2">&quot;Вася&quot;</span> <span class="n">есть</span> <span class="n">право</span> <span class="n">на</span> <span class="n">запись</span> <span class="n">в</span>  <span class="s2">&quot;Лекарство&quot;</span>
+        <span class="n">И</span> <span class="n">есть</span> <span class="n">справочник</span> <span class="s2">&quot;Виды лечений&quot;</span>
+
+    <span class="n">Сценарий</span><span class="p">:</span> <span class="n">Вася</span> <span class="n">создает</span> <span class="n">новую</span> <span class="n">запись</span>
+        <span class="n">Дано</span> <span class="n">я</span> <span class="n">вошел</span> <span class="n">в</span> <span class="n">систему</span> <span class="n">как</span> <span class="n">Вася</span>
+        <span class="n">Когда</span> <span class="n">я</span> <span class="n">пытаюсь</span> <span class="n">добавить</span> <span class="n">запись</span> <span class="n">в</span> <span class="n">справочник</span> <span class="s2">&quot;Лекарства&quot;</span>
+        <span class="n">То</span> <span class="n">мне</span> <span class="n">должен</span> <span class="n">быть</span> <span class="n">ответ</span> <span class="s2">&quot;Ваша запись успешно добавлена.&quot;</span>
+
+    <span class="n">Сценарий</span><span class="p">:</span> <span class="n">Вася</span> <span class="n">не</span> <span class="n">может</span> <span class="n">добавлять</span> <span class="n">запись</span> <span class="n">в</span> <span class="n">справочник</span> <span class="n">лечений</span>
+        <span class="n">Дано</span> <span class="n">я</span> <span class="n">вошел</span> <span class="n">в</span> <span class="n">систему</span> <span class="n">как</span> <span class="n">Вася</span>
+        <span class="n">Когда</span> <span class="n">я</span> <span class="n">пытаюсь</span> <span class="n">добавить</span> <span class="n">запись</span> <span class="n">в</span> <span class="n">справочник</span> <span class="s2">&quot;Виды лечений&quot;</span>
+        <span class="n">То</span> <span class="n">мне</span> <span class="n">должен</span> <span class="n">быть</span> <span class="n">ответ</span> <span class="s2">&quot;У вас нет прав доступа!&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>Шаги<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Функции состоят из шагов, также известных как <em>Данные</em>, <em>Действия</em> и
+<em>Результаты</em>.</p>
+<div class="section" id="givens">
+<h3>Данные (Givens)<a class="headerlink" href="#givens" title="Permalink to this headline">¶</a></h3>
+<p>Назначение шагов <em>Дано</em> состоит в <strong>приведение системы в известное
+состояние</strong> перед тем как пользователь (или внешняя система) начнет
+взаимодействие с системой (в шагах <em>Когда</em>). Также можно рассматривать
+их как предусловия.</p>
+<p>Пример: создавать объекты сущностей или настраивать БД</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Дано</span> <span class="n">нет</span> <span class="n">пользователей</span> <span class="n">в</span> <span class="n">базе</span>
+<span class="n">Дано</span> <span class="n">база</span> <span class="n">данных</span> <span class="n">пустая</span>
+</pre></div>
+</div>
+<p>Пример: вход пользователя в систему (исключение к правилу &#8220;никаких
+взаимодействий в шаге Дано&#8221;)</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Дано</span> <span class="n">я</span> <span class="n">вошел</span> <span class="n">в</span> <span class="n">систему</span> <span class="n">как</span> <span class="s2">&quot;Вася&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="whens">
+<h3>Действия (Whens)<a class="headerlink" href="#whens" title="Permalink to this headline">¶</a></h3>
+<p>Назначение шагов <em>Когда</em> состоит в <strong>описании ключевого действия,
+совершаемого пользователем</strong>.</p>
+<p>Пример: взаимодействие со страницей</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Когда</span> <span class="n">я</span> <span class="n">открыл</span> <span class="n">форму</span> <span class="n">добавления</span> <span class="n">учреждения</span>
+<span class="n">Когда</span> <span class="n">я</span> <span class="n">ввел</span> <span class="s2">&quot;Институт радости&quot;</span> <span class="n">в</span> <span class="n">поле</span> <span class="s2">&quot;Наименование&quot;</span>
+<span class="n">Когда</span> <span class="n">я</span> <span class="n">выбрал</span> <span class="n">в</span> <span class="n">поле</span> <span class="s2">&quot;Тип&quot;</span> <span class="n">значение</span> <span class="s2">&quot;Институт&quot;</span>
+<span class="n">Когда</span> <span class="n">я</span> <span class="n">нажал</span> <span class="n">на</span> <span class="n">кнопку</span> <span class="s2">&quot;Сохранить&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="thens">
+<h3>Результаты (Thens)<a class="headerlink" href="#thens" title="Permalink to this headline">¶</a></h3>
+<p>Назначение шагов <em>То</em> состоит в <strong>наблюдении результатов выполнения
+действий</strong>. Наблюдения должны быть связаны с явной пользой, которая
+указаны в описании функции. Также необходимо помнить, что должен
+проверяться <em>вывод системы</em> (отчеты, интерфейс, сообщения), а не что-то
+глубоко закопанное в систему.</p>
+</div>
+<div class="section" id="and-but">
+<h3>Предлоги (And, But)<a class="headerlink" href="#and-but" title="Permalink to this headline">¶</a></h3>
+<p>Если у вас есть несколько шагов <em>Дано</em>, <em>Когда</em>, или <em>То</em> то вы можете
+писать так:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Сценарий</span><span class="p">:</span> <span class="n">множественные</span> <span class="n">данные</span>
+    <span class="n">Дано</span> <span class="n">что</span><span class="o">-</span><span class="n">то</span> <span class="n">первое</span>
+    <span class="n">Дано</span> <span class="n">что</span><span class="o">-</span><span class="n">то</span> <span class="n">второе</span>
+    <span class="n">Дано</span> <span class="n">и</span> <span class="n">что</span><span class="o">-</span><span class="n">то</span> <span class="n">ещё</span>
+    <span class="n">Когда</span> <span class="n">я</span> <span class="n">открою</span> <span class="n">свои</span> <span class="n">глаза</span>
+    <span class="n">То</span> <span class="n">я</span> <span class="n">увижу</span> <span class="n">что</span><span class="o">-</span><span class="n">то</span>
+    <span class="n">То</span> <span class="n">чего</span><span class="o">-</span><span class="n">то</span> <span class="n">я</span> <span class="n">не</span> <span class="n">увижу</span>
+</pre></div>
+</div>
+<p>...или можете использовать шаги <em>И</em> и <em>Но</em>, превращая свой сценарий в
+нечто более читаемое:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Сценарий</span><span class="p">:</span> <span class="n">множественные</span> <span class="n">данные</span>
+    <span class="n">Дано</span> <span class="n">что</span><span class="o">-</span><span class="n">то</span> <span class="n">первое</span>
+    <span class="n">И</span> <span class="n">что</span><span class="o">-</span><span class="n">то</span> <span class="n">второе</span>
+    <span class="n">И</span> <span class="n">и</span> <span class="n">что</span><span class="o">-</span><span class="n">то</span> <span class="n">ещё</span>
+    <span class="n">Когда</span> <span class="n">я</span> <span class="n">открою</span> <span class="n">свои</span> <span class="n">глаза</span>
+    <span class="n">То</span> <span class="n">я</span> <span class="n">увижу</span> <span class="n">что</span><span class="o">-</span><span class="n">то</span>
+    <span class="n">Но</span> <span class="n">чего</span><span class="o">-</span><span class="n">то</span> <span class="n">я</span> <span class="n">не</span> <span class="n">увижу</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Таблицы<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Регулярные выражения, с помощью которых программисты получают данные из
+текстового описания шагов позволяют получать небольшие куски данных из
+самой строчки. Но бывает и такое, что необходимо передать больший объем
+данных в один шаг. И здесь нам на помощь придут таблицы:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Сценарий</span><span class="p">:</span>
+    <span class="n">Дано</span> <span class="n">существуют</span> <span class="n">следующие</span> <span class="n">пользователи</span><span class="p">:</span>
+        <span class="o">|</span> <span class="n">Логин</span> <span class="o">|</span> <span class="n">E</span><span class="o">-</span><span class="n">mail</span>        <span class="o">|</span> <span class="n">Пароль</span> <span class="o">|</span>
+        <span class="o">|</span> <span class="n">user1</span> <span class="o">|</span> <span class="n">user1</span><span class="nd">@mail</span><span class="o">.</span><span class="n">ru</span> <span class="o">|</span> <span class="n">pass1</span>  <span class="o">|</span>
+        <span class="o">|</span> <span class="n">joe</span>   <span class="o">|</span> <span class="n">joe</span><span class="nd">@gmail</span><span class="o">.</span><span class="n">com</span> <span class="o">|</span> <span class="n">hey</span>    <span class="o">|</span>
+        <span class="o">|</span> <span class="n">heyho</span> <span class="o">|</span> <span class="n">hey</span><span class="nd">@hoe</span><span class="o">.</span><span class="n">com</span>   <span class="o">|</span> <span class="n">joe</span>    <span class="o">|</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Gherkin</a><ul>
+<li><a class="reference internal" href="#feature">Функции (Feature)</a></li>
+<li><a class="reference internal" href="#scenario">Сценарий (Scenario)</a></li>
+<li><a class="reference internal" href="#scenario-outline">Структура сценария (Scenario Outline)</a></li>
+<li><a class="reference internal" href="#background">Предыстории (Background)</a></li>
+<li><a class="reference internal" href="#id1">Шаги</a><ul>
+<li><a class="reference internal" href="#givens">Данные (Givens)</a></li>
+<li><a class="reference internal" href="#whens">Действия (Whens)</a></li>
+<li><a class="reference internal" href="#thens">Результаты (Thens)</a></li>
+<li><a class="reference internal" href="#and-but">Предлоги (And, But)</a></li>
+<li><a class="reference internal" href="#id2">Таблицы</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to sprint_1&#8217;s documentation!</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/Gherkin.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, OMasterskikh.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/Gherkin.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
