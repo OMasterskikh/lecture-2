@@ -10,7 +10,7 @@ Welcome to lecture1's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-
+   Gherkin
 
 Indices and tables
 ==================
